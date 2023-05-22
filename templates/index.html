@@ -1,0 +1,35 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.4/dist/flowbite.min.css" />
+</head>
+
+<body class="flex flex-col p-8 dark:bg-gray-900 antialiased">
+  <form id="form" action="/predict" method="post" enctype='multipart/form-data' class="flex flex-row gap-4">
+    <!-- 작물 목록 -->
+    <select name="cropName" id="cropName"
+      class="flex basis-1/4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+      <option value="딸기">딸기</option>
+      <option value="토마토">토마토</option>
+      <option value="파프리카">파프리카</option>
+      <option value="오이">오이</option>
+      <option value="고추">고추</option>
+      <option value="포도">포도</option>
+    </select>
+    <!-- 이미지 선택 -->
+    <input id="image" name="image" type="file" accept="image/*" required
+      class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" />
+      <input name="name" type="hidden" value="{{ uuid }}">
+  </form>
+</body>
+<script>
+  // 사용자가 파일을 선택한 경우 HTML Form 을 Submit 하여 서버에 요청을 보냅니다
+  document.getElementById("image").onchange = () => {
+    document.getElementById("form").submit()
+  }
+</script>
+
+</html>
